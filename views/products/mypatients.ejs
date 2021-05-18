@@ -10,12 +10,14 @@
     <h1><%= doct.name %> </h1>
     <h1>Mera ROJI ROTI</h1>
     <% for(let rogi of doct.rogi){ %>
+        <% if(rogi!=null){ %> 
        <h1>rogi name - <%= rogi.name %> </h1>
        <h2>rogi phone no-<%= rogi.phone %> </h2>    
        <hr>
-       <form action="/delete/<%= rogi._id %>/<%= doct._id %>" >
+       <form action="/doctor/<%= doct._id %>/rogi/<%= rogi._id %>?_method=DELETE" method="POST" >
            <button>Delete</button>
        </form>
+       <% } %> 
     <% }  %> 
 </body>
 </html>

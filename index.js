@@ -26,7 +26,7 @@ app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
-
+app.use(methodOverride('_method'));
 // app.get('/doc',(req,res)=>{
 //     const passportLocal= require('../cureindia/config/passort');
 //     return res.redirect('/');
@@ -274,14 +274,15 @@ app.post('/booking/:id',async(req,res)=>{
     res.render("products/mybookings",{p});
 })
 mongoose.set('useFindAndModify', false);
-app.get('/delete/:id/:id2',async (req,res)=>{
-    const {id , id2 } = req.params;
-    const doct = await doctor.findById(id2);
-    console.log(doct);
-    console.log(id);
-    await doctor.findOneAndUpdate({$pull : {rogi : id} });
-   return res.redirect("back");
-})
+
+// app.delete('/doctor/:id/rogi/:id2',async (req,res)=>{
+//     const {id , id2 } = req.params;
+//     const doct = await doctor.findById(id).populate('rogi');
+//     console.log(doct);
+//     console.log(id2);
+//     await doctor.findByIdAndUpdate(id, { $pull: { rogi: id2 } });
+//     res.redirect("back");
+// })
 
 app.post("/bookings",async (req,res)=>{
     const p = await patient.findById(currentsessionid).populate('doc');

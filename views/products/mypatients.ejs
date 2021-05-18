@@ -13,6 +13,9 @@
        <h1>rogi name - <%= rogi.name %> </h1>
        <h2>rogi phone no-<%= rogi.phone %> </h2>    
        <hr>
+       <form action="/delete/<%= rogi._id %>/<%= doct._id %>" >
+           <button>Delete</button>
+       </form>
     <% }  %> 
 </body>
 </html>

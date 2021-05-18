@@ -20,8 +20,14 @@ const patientSchema=new mongoose.Schema({
     password:{
         type:String,
         required:true
-    }
-})
+    },
+    doc:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"doctor"
+        }
+    ]
+},{timestamps : true})
 const patient=mongoose.model('patient',patientSchema);
 
 module.exports=patient;

@@ -1,6 +1,7 @@
 const express=require('express');
 const app=express();
 const passport=require('passport');
+const methodOverride = require('method-override');
 // const passportpatient= require('../cureindia/config/passportP');
 const passportLocal= require('../cureindia/config/passort');
 // const passportpatient= require('../cureindia/config/passportP');
@@ -195,6 +196,7 @@ app.get('/profileD/:id', async (req,res)=>{
 app.get('/mypatients/:id',async(req,res)=>{
     const {id} = req.params;
     const doct = await doctor.findById(id).populate('rogi');
+ //   console.log(doct);
     res.render('products/mypatients',{doct});
 })
 
@@ -265,7 +267,25 @@ app.post('/booking/:id',async(req,res)=>{
     const pat = await patient.findById(currentsessionid);
     doct.rogi.push(pat);
     await doct.save();
-    res.redirect("/profileP");
+    pat.doc.push(doct);
+    await pat.save();
+    console.log(pat);
+    const p = await patient.findById(currentsessionid).populate('doc');
+    res.render("products/mybookings",{p});
+})
+mongoose.set('useFindAndModify', false);
+app.get('/delete/:id/:id2',async (req,res)=>{
+    const {id , id2 } = req.params;
+    const doct = await doctor.findById(id2);
+    console.log(doct);
+    console.log(id);
+    await doctor.findOneAndUpdate({$pull : {rogi : id} });
+   return res.redirect("back");
+})
+
+app.post("/bookings",async (req,res)=>{
+    const p = await patient.findById(currentsessionid).populate('doc');
+    res.render("products/mybookings",{p});
 })
 
 app.listen(3000,()=>{

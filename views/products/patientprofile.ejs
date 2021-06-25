@@ -6,16 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body style="background-image: linear-gradient(to right, rgb(1, 11, 37) , rgb(182, 176, 176));">
+    <div style="border:5px solid black; border-radius: 10px;background-color: rgb(161, 163, 165); height: 70%; width:50%; text-align: center; margin-left: 25%;">
     <hr>
-    <center><h1>Welcome <%= user.name %></h1></center>
+    <center><h1 style="color:blue;font-family: cursive;">Welcome <%= user.name %></h1></center>
     <form action="/logoutP" method="POST">
-        <button>Naya button</button>
+        <button  style="border-radius: 10px; padding: 10px; margin:10px; background-color: darkkhaki; color:darkmagenta">Log Out</button>
     </form>
     <br><br>
-        <a href="/DisplayDoct"> <button>Doctor's List</button></a>
+        <a href="/DisplayDoct"> <button style="border-radius: 10px; padding: 10px; margin:10px; background-color: darkkhaki; color:darkmagenta">Doctor's List</button></a>
         <form action="/bookings" method="POST">
-            <button>my bookings</button>
+            <button style="border-radius: 10px; padding: 10px; margin:10px; background-color: darkkhaki; color:darkmagenta">my bookings</button>
         </form>
+    </div>
 </body>
 </html>

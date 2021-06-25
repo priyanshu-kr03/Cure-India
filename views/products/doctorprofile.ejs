@@ -6,18 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body style="background-image: linear-gradient(to right, rgb(1, 11, 37) , rgb(182, 176, 176));">
    
-   <h1><%= doct.name %></h1>
+    <div style="border:5px solid black; border-radius: 10px;background-color: rgb(161, 163, 165); height: 70%; width:50%; text-align: center; margin-left: 25%;">
+   <h1 style="color:blue;font-family: cursive;"><%= doct.name %></h1>
     <hr>
-    <a  href="/mypatients/<%= doct._id %> "> my list </a>
+    <a  href="/mypatients/<%= doct._id %> "><button style="border-radius: 10px; padding: 10px; margin:10px; background-color: darkkhaki; color:darkmagenta"> My Patients</button> </a>
     <hr>
         <%if(locals.user){ %>
-            <a href="/logout"><button >logout</button></a>
+            <a href="/logout"><button  style="border-radius: 10px; padding: 10px; margin:10px; background-color: darkkhaki; color:darkmagenta">logout</button></a>
         <%   } 
         else
         { %>
-            <button>boka hai kya bahar hi to hai</button>
+            <button style="border-radius: 10px; padding: 10px; margin:10px; background-color: red; color:rgb(243, 215, 243)">Logged Out</button>
          <% }  %> 
+    </div>
 </body>
 </html>

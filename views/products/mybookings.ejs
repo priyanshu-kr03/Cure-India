@@ -6,16 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-   <h1>MY bookings</h1>
+<body style="background-image: linear-gradient(to right, rgb(1, 11, 37) , rgb(182, 176, 176));">
+    <div style="border:5px solid black; border-radius: 10px;background-color: rgb(161, 163, 165); height: 70%; width:50%; text-align: center; margin-left: 25%;">
+   <h1 style="color:blue;font-family: cursive;">My Bookings</h1>
+   <div style="border-radius: 10px; border:2px dashed rgb(235, 75, 187); padding:10px; margin:10px; box-shadow: 5px 5px 0 0;">
    <% for(let d of p.doc){ %>
-      <%= d.name %> 
-      <br>
-      <%= d.address %>
-      <br>
-      <%= d.phone %>
-      <br>
+    <div style="border-radius: 10px; border:2px dashed rgb(147, 235, 75); padding:10px; margin:10px; box-shadow: 5px 5px 0 0; background-image: linear-gradient(to right, rgb(1, 11, 37) , rgb(182, 176, 176));;">
+      <h2 style="color:rgb(104, 7, 39); font-family:serif;"><%= d.name %> </h2>
+    
+      <h2 style="color:rgb(104, 7, 39); font-family:serif;"><%= d.address %></h2>
+    
+      <h2 style="color:rgb(104, 7, 39); font-family:serif;"><%= d.phone %></h2>
+     
       <hr>  
+    </div>
     <% } %> 
+   </div>
+    </div>
 </body>
 </html>

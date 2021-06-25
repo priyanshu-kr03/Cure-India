@@ -11,14 +11,15 @@
     <h1 style="color:blue;font-family: cursive;"><%= doct.name %> </h1>
     <h1 style="border-radius: 10px; padding: 10px; margin:10px; background-color: darkkhaki; color:darkmagenta">My Patients</h1>
     
-    <% for(let rogi of doct.rogi){ %>
-        <% if(rogi!=null){ %> 
+    <% for(let x=0;x<doct.rogi.length;x++){ %>
+        <% if(doct.rogi[x]!=null){ %> 
         <div style="border-radius: 10px; border:2px dashed rgb(235, 75, 187); padding:10px; margin:10px; box-shadow: 5px 5px 0 0;">
-       <h1 style="color:rgb(183, 220, 241); font-family:sans-serif">Patient's name ~ <%= rogi.name %> </h1>
-       <h2 style="color:rgb(183, 220, 241); font-family:sans-serif">Patient's phone no ~ <%= rogi.phone %> </h2>
-      
+        <h1 style="color:rgb(183, 220, 241); font-family:sans-serif"><%= x+1 %> </h1>
+        <h1 style="color:rgb(183, 220, 241); font-family:sans-serif">Patient's name ~ <%= doct.rogi[x].name %> </h1>
+       <h2 style="color:rgb(183, 220, 241); font-family:sans-serif">Patient's phone no ~ <%= doct.rogi[x].phone %> </h2>
+       <h2 style="color:rgb(183, 220, 241); font-family:sans-serif">Patient's booking time ~ <%= doct.rogi[x].bookedat[x] %> </h2>
        <hr>
-       <form action="/doctor/<%= doct._id %>/rogi/<%= rogi._id %>?_method=DELETE" method="POST" >
+       <form action="/doctor/<%= doct._id %>/doct.rogi[x]/<%= doct.rogi[x]._id %>?_method=DELETE" method="POST" >
            <button style="border-radius: 10px; padding: 10px; margin:10px; background-color: darkkhaki; color:darkmagenta">Delete</button>
        </form>
         </div>

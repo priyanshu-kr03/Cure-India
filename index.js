@@ -267,10 +267,14 @@ app.post('/booking/:id',async(req,res)=>{
     const pat = await patient.findById(currentsessionid);
     doct.rogi.push(pat);
     await doct.save();
+    var today = new Date();
     pat.doc.push(doct);
+    pat.bookedat.push(today);
     await pat.save();
     console.log(pat);
     const p = await patient.findById(currentsessionid).populate('doc');
+
+    
     res.render("products/mybookings",{p});
 })
 mongoose.set('useFindAndModify', false);

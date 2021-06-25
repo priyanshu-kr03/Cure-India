@@ -29,12 +29,19 @@ const doctSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    // Slots:
+    //     {
+    //         type:Date
+    //     }
+    // ,
     rogi:[
         {
             type:mongoose.Schema.Types.ObjectId,
             ref:"patient"
         }
     ]
+},{
+    timestamps:true
 })
 const doctor=mongoose.model('doctor',doctSchema);
 

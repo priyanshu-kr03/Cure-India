@@ -26,8 +26,17 @@ const patientSchema=new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref:"doctor"
         }
+      
+    ],
+    bookedat:[
+        {
+            type:Date
+            
+        }
+      
     ]
-},{timestamps : true})
+}
+,{timestamps : true})
 const patient=mongoose.model('patient',patientSchema);
 
 module.exports=patient;

@@ -271,6 +271,7 @@ app.get('/logout',(req,res)=>{
 //     // cookie.Expires = DateTime.Now.AddDays(-1);
 //     return res.redirect('/');
 // })
+
 app.post('/logoutP',(req,res)=>{
     req.session.user_id=null;
     return res.redirect('/');

@@ -19,9 +19,10 @@
        <h2 style="color:rgb(183, 220, 241); font-family:sans-serif">Patient's phone no ~ <%= doct.rogi[x].phone %> </h2>
        <h2 style="color:rgb(183, 220, 241); font-family:sans-serif">Patient's booking time ~ <%= doct.rogi[x].bookedat[x] %> </h2>
        <hr>
-       <form action="/doctor/<%= doct._id %>/doct.rogi[x]/<%= doct.rogi[x]._id %>?_method=DELETE" method="POST" >
+       <form action="/doctor/<%= doct._id %>/<%= doct.rogi[x] %>/<%= doct.rogi[x]._id %>" method="POST" >
            <button style="border-radius: 10px; padding: 10px; margin:10px; background-color: darkkhaki; color:darkmagenta">Delete</button>
        </form>
+      
         </div>
        <% } %> 
     <% }  %> 

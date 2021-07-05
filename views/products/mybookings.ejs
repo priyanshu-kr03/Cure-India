@@ -14,17 +14,23 @@
     <% if(p.doc[d]!=null){  %>
     <div style="border-radius: 10px; border:2px dashed rgb(147, 235, 75); padding:10px; margin:10px; box-shadow: 5px 5px 0 0; background-image: linear-gradient(to right, rgb(1, 11, 37) , rgb(182, 176, 176));;">
       <h2 style="color:rgb(104, 7, 39); font-family:serif;"><%= d+1 %></h2>
-      <h2 style="color:rgb(104, 7, 39); font-family:serif;"> Patient's name ~ <%= p.doc[d].name %> </h2>
+      <h2 style="color:rgb(104, 7, 39); font-family:serif;"> Doctor's name ~ <%= p.doc[d].name %> </h2>
     
-      <h2 style="color:rgb(104, 7, 39); font-family:serif;"> Patient's email ~ <%= p.doc[d].address %></h2>
+      <h2 style="color:rgb(104, 7, 39); font-family:serif;"> Doctor's email ~ <%= p.doc[d].address %></h2>
     
-      <h2 style="color:rgb(104, 7, 39); font-family:serif;">  Patient's phone no. ~<%= p.doc[d].phone %></h2>
+      <h2 style="color:rgb(104, 7, 39); font-family:serif;">   Doctor's phone no. ~<%= p.doc[d].phone %></h2>
       <h2 style="color:rgb(104, 7, 39); font-family:serif;"><%= p.bookedat[d] %></h2>
       <hr>  
+      <form action="/patient/<%= p._id %>/<%= p.doc[d] %>/<%= p.doc[d]._id %>" method="POST" >
+        <button style="border-radius: 10px; padding: 10px; margin:10px; background-color: darkkhaki; color:darkmagenta">Delete</button>
+      </form>
     </div>
     <% } %> 
     <% } %> 
    </div>
+    </div>
+</body>
+</html>v>
     </div>
 </body>
 </html>

@@ -10,14 +10,29 @@
     <title>All Doctors</title>
 </head>
 <body class="body">
+    <div>
+        <form style="margin:30px;display: inline-block;" action="/to-profile" method="GET"><button style="border-radius: 5px; background-color: blanchedalmond; border:2px solid black;">My Profile</button></form>
+        <a href="http://localhost:3000"><button type="submit" style="border-radius: 5px; background-color: blanchedalmond; border:2px solid black;">Home</button></a>
+    </div>
+    <div style="margin:30px">
     <center><h1>All Doctors</h1></center>
     
+    <form style="margin:30px;display: inline-block;" action="/search-doctor" method="POST">
+        <input type="text" name="specsid" placeholder="enter specialization" required>
+        <button type="submit">Search Doctor/Doctors</button>
+    </form>
+    <form style="margin:30px;display: inline-block;" action="/search-doctor-loc" method="POST">
+        <input type="text" name="locid" placeholder="enter location" required>
+        <button type="submit">Search Doctor/Doctors</button>
+    </form>
+    </div>
     <ol>
         <% for(let i of doctList){ %>
             <li class="list">
                 <ul>
                    <li class="list1"><%= i.name %></li> 
                    <li class="list1"> Specialisation - <%= i. specialisation %>  </li>
+                   <li class="list1"> Address - <%= i. address %>  </li>
                    <li class="list1">
                         <a href="/doctor/<%= i._id %> "><button class="button2" >Details</button></a>
                    </li>

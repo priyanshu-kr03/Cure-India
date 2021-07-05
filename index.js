@@ -164,6 +164,17 @@ app.get('/DisplayDoct',async (req,res)=>{
     const doctList= await doctor.find({});
     res.render('products/Doctorshow',{doctList});
 })
+
+//search doctor by specialization
+app.post('/search-doctor',async (req,res)=>{
+    const doctList= await doctor.find({specialisation:req.body.specsid});
+    res.render('products/Doctorshow',{doctList});
+})
+//search doctor by location
+app.post('/search-doctor-loc',async (req,res)=>{
+    const doctList= await doctor.find({address:req.body.locid});
+    res.render('products/Doctorshow',{doctList});
+})
 //Individual details of Doctor sahab
 app.get('/doctor/:id',async(req,res)=>{
     const {id}=req.params;
@@ -206,6 +217,7 @@ app.get('/signinPatients',(req,res)=>{
 })
 // const passportpatient= require('../cureindia/config/passportP');
 //Ptient Signin
+let curruser;
 app.post('/signinPatients',(req,res)=>{
     
     patient.findOne({email:req.body.email},function(err,user){
@@ -223,6 +235,7 @@ app.post('/signinPatients',(req,res)=>{
             res.cookie('user_id',user.id);
             // const detail=req.body;
             currentsessionid = user.id;
+            curruser=user;
             return res.render('products/patientprofile',{user:user});
         }else{
              //handle user not found
@@ -238,8 +251,9 @@ app.post('/signinPatients',(req,res)=>{
 //     return res.redirect('/profileP');
 // })
 
-app.get('/profileP',(req,res)=>{
 
+app.get('/profileP',(req,res)=>{
+    
     return res.render('products/patientprofile',{user:req.body});
 })
 
@@ -278,21 +292,40 @@ app.post('/booking/:id',async(req,res)=>{
     res.render("products/mybookings",{p});
 })
 mongoose.set('useFindAndModify', false);
-
-// app.delete('/doctor/:id/rogi/:id2',async (req,res)=>{
-//     const {id , id2 } = req.params;
-//     const doct = await doctor.findById(id).populate('rogi');
-//     console.log(doct);
-//     console.log(id2);
-//     await doctor.findByIdAndUpdate(id, { $pull: { rogi: id2 } });
-//     res.redirect("back");
-// })
-
+//delete booking by doctor
+app.post('/doctor/:id/:rogi/:id2',async (req,res)=>{
+    const {id , id2 } = req.params;
+    const doct = await doctor.findById(id).populate('rogi');
+    const patt = await patient.findById(id2).populate('doc');
+    console.log(doct);
+    console.log(id2);
+    await doctor.findByIdAndUpdate(id, { $pull: { rogi: id2 } });
+    await patient.findByIdAndUpdate(id2, { $pull: { doc: id } });
+    res.redirect("back");
+})
 app.post("/bookings",async (req,res)=>{
     const p = await patient.findById(currentsessionid).populate('doc');
     res.render("products/mybookings",{p});
 })
+//delete booking by patient
 
+app.post('/patient/:id3/:doc/:id4',async (req,res)=>{
+    const {id3 , id4 } = req.params;
+    const doct = await doctor.findById(id4).populate('rogi');
+    const p = await patient.findById(id3).populate('doc');
+    
+    console.log(doct);
+    console.log(id4);
+    await doctor.findByIdAndUpdate(id4, { $pull: { rogi: id3 } });
+    await patient.findByIdAndUpdate(id3, { $pull: { doc: id4 } });
+    //res.render("products/mybookings",{p});
+    return res.render('products/patientprofile',{user:p});
+})
+
+//to profile
+app.get('/to-profile',async (req,res)=>{
+    return res.render('products/patientprofile',{user:curruser});
+})
 app.listen(3000,()=>{
     console.log("Connection established ab Again and again");
 })

@@ -45,10 +45,10 @@ const doctSchema = new mongoose.Schema({
 })
 const doctor=mongoose.model('doctor',doctSchema);
 
-doctor.deleteMany().then(function(){
-    console.log("Data deleted"); // Success
-}).catch(function(error){
-    console.log(error); // Failure
-});
+// doctor.deleteMany().then(function(){
+//     console.log("Data deleted"); // Success
+// }).catch(function(error){
+//     console.log(error); // Failure
+// });
 
 module.exports=doctor;
